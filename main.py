@@ -4,7 +4,7 @@ import send_email
 
 
 api_key = Important.get_api_key()
-url = Important.get_url()
+url = Important.get_url("tesla") #apple,tesla,techcrunch
 
 request = requests.get(url)
 
@@ -16,8 +16,8 @@ news ="""\
 subject: Here is today's news
 """
 
-for article in content["articles"]:
-    text = f"title : {article["title"]}\ndescription: {article["description"]} \n\n"
+for article in content["articles"][:20]:
+    text = f"title : {article["title"]}\ndescription: {article["description"]} \nread more: {article["url"]} \n\n"
     news = news+text
 
 #used when getting ascii error
